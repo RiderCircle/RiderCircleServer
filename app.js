@@ -11,11 +11,11 @@ var jwt = require('jsonwebtoken');
 var index = require('./routes/index');
 var users = require('./routes/users');
 
-var config = require('./config/main');  
+var config = require('./routes/libs/config');  
 
 var app = express();
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/myappdatabase');
+mongoose.connect(config.database); 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -28,6 +28,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(morgan('dev')); 
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(passport.initialize());  
 
 app.use('/', index);
 app.use('/users', users);
