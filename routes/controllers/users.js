@@ -42,3 +42,8 @@ exports.authenticate = function(req,res){
 	    }
 	});
 };
+
+exports.get = function(callback,limit){
+    Users.find(callback).limit(limit);
+		res.json(Users);
+}

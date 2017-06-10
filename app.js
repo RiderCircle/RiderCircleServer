@@ -10,6 +10,7 @@ var jwt = require('jsonwebtoken');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var rides = require('./routes/rides');
 
 var config = require('./routes/libs/config');  
 
@@ -32,7 +33,7 @@ app.use(passport.initialize());
 
 app.use('/', index);
 app.use('/users', users);
-//app.use('/rides', rides);
+app.use('/rides', rides);
 
 
 // catch 404 and forward to error handler
